@@ -17,9 +17,8 @@ linked_t* linkCreate(nodes_list *fl, linked_t *node, int data) {
 }
 
 void linkAppend(nodes_list *fl, int new_data) {
-	linked_t *new_node = linkCreate(fl, NULL, new_data);
-	fl->last->node = new_node;
-	fl->last = new_node;
+	fl->last->node = linkCreate(fl, NULL, new_data);
+	fl->last = fl->last->node
 }
 
 void linkPush(nodes_list *fl, int new_data) {
