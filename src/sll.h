@@ -8,17 +8,18 @@ typedef struct linked_t {
 	struct linked_t *node;
 } linked_t;
 
-typedef struct free_links {
+typedef struct nodes_list {
 	int *index;
-	linked_t *free_later[MAX_NODES];
-	linked_t *first;
-} free_links;
+	linked_t *nodes[MAX_NODES];
+	linked_t *first, *last;
+} nodes_list;
 
-linked_t* linkCreate(free_links *fl, linked_t *node, int data);
-void linkAppend(free_links *fl, linked_t **node, int new_data);
-void linkPush(free_links *fl, linked_t *node, int new_data);
-void linkDestroy(free_links *fl);
+linked_t* linkCreate(nodes_list *fl, linked_t *node, int data);
+void linkAppend(nodes_list *fl, int new_data);
+void linkPush(nodes_list *fl, int new_data);
+void linkDestroy(nodes_list *fl);
 void linkDelete(linked_t **node, linked_t *next);
-void showList(free_links *fl);
+void showList(nodes_list *fl);
+void setup(nodes_list *fl);
 
 #endif

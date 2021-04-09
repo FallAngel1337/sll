@@ -3,7 +3,7 @@
 
 #include <sll.h>
 
-linked_t* linkCreate(free_links *fl, linked_t *node, int data) {
+linked_t* linkCreate(nodes_list *fl, linked_t *node, int data) {
 	int index = (*fl->index)++;
 	linked_t *new_node = (linked_t*)malloc(sizeof(linked_t));
 
@@ -12,40 +12,38 @@ linked_t* linkCreate(free_links *fl, linked_t *node, int data) {
 		.node = node,
 	};
 
-	fl->free_later[index] = new_node;
+	fl->nodes[index] = new_node;
 	return new_node;
 }
 
-void linkAppend(free_links *fl, linked_t **node, int new_data) {
+void linkAppend(nodes_list *fl, int new_data) {
 	linked_t *new_node = linkCreate(fl, NULL, new_data);
-	(*node)->node = new_node;
+	fl->last->node = new_node;
+	fl->last = new_node;
 }
 
-void linkPush(free_links *fl, linked_t *node, int new_data) {
-	linked_t *new_node = linkCreate(fl, node, new_data);
-	fl->first = new_node;
+void linkPush(nodes_list *fl, int new_data) {
+	fl->first = linkCreate(fl, fl->first, new_data);
 }
 
-void linkDestroy(free_links *fl) {
+void linkDestroy(nodes_list *fl) {
 	int index = *fl->index;
 	for (int i=0; i < index; i++) {
-		// printf("Freed: %p\n", (fl->free_later)[i]);
-		free((fl->free_later)[i]);
+		// printf("Freed: %p\n", (fl->nodes)[i]);
+		free((fl->nodes)[i]);
 	}
 }
 
-void linkDelete(linked_t **node, linked_t *next) 
-{
+void showList(nodes_list *fl) {
+	linked_t *first = fl->first;
 
-	(*node)->node = next;
+	while (first != NULL) {
+		printf("%d\n", first->data);
+		first = first->node;
+	}
 }
 
-void showList(free_links *fl) {
-	linked_t *node = fl->first;
-	
-	while (node != NULL) {
-		printf("%d\n", node->data);
-		node = node->node;
-	}
-	
+void setup(nodes_list *fl) {
+	fl->first = fl->nodes[0];
+	fl->last = fl->nodes[--*(fl->index)];
 }

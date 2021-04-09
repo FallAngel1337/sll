@@ -9,17 +9,21 @@
 
 int main(void) {
 	int index = 0;
-	free_links fl;
+	nodes_list fl;
 	fl.index = &index;
 
-	linked_t *a = linkCreate(&fl, NULL, 1);
-	linked_t *b = linkCreate(&fl, a, 2);
-	linked_t *c = linkCreate(&fl, b, 3);
-	linked_t *d = linkCreate(&fl, c, 4);
+	linkCreate(&fl, NULL, 4);
+	setup(&fl);
 
-	linkPush(&fl, d, 6);
-	linkAppend(&fl, &a, 5);
-    linkDelete(&d, b);
+	linkPush(&fl, 3);
+	linkPush(&fl, 2);
+	linkPush(&fl, 1);
+	linkPush(&fl, 0);
+	linkPush(&fl, -1);
+	linkAppend(&fl, 5);
+	linkAppend(&fl, 6);
+	linkAppend(&fl, 7);
+	linkAppend(&fl, 8);
 	
 	showList(&fl);
 
