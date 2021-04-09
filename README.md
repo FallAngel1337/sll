@@ -1,4 +1,4 @@
-# sll 🐱
+# Single Linked List 🐱
      
      A simple single linked list implementation made in C
 
@@ -6,21 +6,19 @@
 
 
 # Help 📜
-     
-     Compile ::
-        make
-     Usage   ::
-        cd /bin && ./main.out
+* Instalation:
+```
+$ git clone https://github.com/FallAngel1337/sll.git
+$ cd sll
+$ make
+$ ./bin/main.out
+```
         
 # Info ℹ️
 
-    A simple single linked list implementation in beta 
-     
-# Change Log 🏴󠁡󠁦󠁬󠁯󠁧󠁿
-
-
-### Version  1.0(beta)
-     * in beta not func
+    I've just implemented push and append operations, due other insertion and deletion are more easy at doubly linked lists.
+    Feel free to implement them.
+ 
 -------------------------------------------------
 
 # Badges 📛
