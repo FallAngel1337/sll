@@ -1,4 +1,3 @@
-# /proc/sys/vm/dirty_writeback_centisecs
 # $ gcc -Wall -Wextra -I. -o sll.o -c sll.c 
 # $ gcc -g -Wall -o main -I. main.c sll.o
 # $ ./main
